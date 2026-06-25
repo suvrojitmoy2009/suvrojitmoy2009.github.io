@@ -58,7 +58,7 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 32px; max-width:1080px; margin:0 auto;
   }
-  .logo{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:-0.02em;}
+  .logo{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.95rem; letter-spacing:-0.01em; white-space:nowrap;}
   .logo .dot{color:var(--teal);}
   .navlinks{display:flex; gap:32px; font-size:0.9rem; color:var(--muted);}
   .navlinks a{transition:color .2s;}
@@ -214,6 +214,41 @@
     font-family:'JetBrains Mono',monospace; color:var(--amber); font-weight:600;
   }
 
+  /* PROJECTS */
+  .project-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:32px; display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;
+  }
+  .project-tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+    color:var(--amber); text-transform:uppercase; letter-spacing:0.06em;
+    border:1px solid rgba(242,169,59,0.35); border-radius:4px;
+    padding:3px 8px; display:inline-block; margin-bottom:14px;
+  }
+  .project-card h3{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.2rem;
+    margin-bottom:10px;
+  }
+  .project-card p{color:#C4CAD6; font-size:0.92rem; max-width:600px; margin-bottom:18px;}
+  .project-meta{
+    display:flex; gap:18px; flex-wrap:wrap; margin-bottom:18px;
+  }
+  .project-meta span{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--teal);
+  }
+  .project-stack{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+  .project-stack span{
+    font-size:0.76rem; color:var(--muted); border:1px solid var(--line);
+    border-radius:20px; padding:4px 12px;
+  }
+  .project-link{
+    font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:var(--teal);
+    border-bottom:1px solid var(--teal); padding-bottom:2px;
+    display:inline-flex; align-items:center; gap:6px;
+    transition: opacity .15s;
+  }
+  .project-link:hover{opacity:0.7;}
+
   /* EDUCATION / CERTS */
   .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:48px;}
   .edu-item{margin-bottom:28px;}
@@ -267,10 +302,11 @@
 
 <header>
   <nav>
-    <div class="logo">S.Ghosh<span class="dot">.</span></div>
+    <div class="logo">Suvrojitmoy Ghosh<span class="dot">.</span></div>
     <div class="navlinks">
       <a href="#work">Experience</a>
       <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
@@ -392,6 +428,32 @@
       <div class="skill-card">
         <h3>Delivery</h3>
         <p>Azure DevOps for ticketing and release management — shipping verified solutions from UAT to production.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="projects">
+    <div class="section-tag">// Research &amp; Projects</div>
+    <h2>Beyond the day job.</h2>
+    <p class="section-intro">Applied machine learning work from my MSc — published and indexed.</p>
+
+    <div class="project-card">
+      <div>
+        <span class="project-tag">MSc Thesis · 2020</span>
+        <h3>Detection of Diabetic Retinopathy using Deep Learning</h3>
+        <p>Built and evaluated deep learning models to automatically detect diabetic retinopathy from retinal fundus images — applying transfer learning and CNN architectures to a binary medical imaging classification problem, with sensitivity, specificity, and accuracy used as evaluation metrics.</p>
+        <div class="project-meta">
+          <span>National College of Ireland</span>
+          <span>MSc Data Analytics</span>
+        </div>
+        <div class="project-stack">
+          <span>Python</span>
+          <span>Deep Learning</span>
+          <span>CNNs</span>
+          <span>Transfer Learning</span>
+          <span>Medical Imaging</span>
+        </div>
+        <a href="https://norma.ncirl.ie/4442/" target="_blank" rel="noopener" class="project-link">View thesis on NORMA@NCI Library →</a>
       </div>
     </div>
   </section>
