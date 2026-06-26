@@ -30,7 +30,6 @@
     overflow-x:hidden;
   }
   ::selection{background:var(--teal); color:var(--ink);}
-
   a{color:inherit; text-decoration:none;}
 
   .mono{font-family:'JetBrains Mono', monospace;}
@@ -38,7 +37,6 @@
 
   .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
 
-  /* background grid texture */
   .grid-bg{
     position:fixed; inset:0; z-index:0; pointer-events:none;
     background-image:
@@ -71,7 +69,31 @@
   }
   .nav-cta:hover{background:var(--teal); color:var(--ink);}
 
-  /* HERO */
+  .menu-toggle{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    background:none; border:none; padding:8px; cursor:pointer; z-index:60;
+  }
+  .menu-toggle span{
+    width:22px; height:2px; background:var(--text); display:block;
+    transition: transform .25s, opacity .25s;
+  }
+  .menu-toggle.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu{
+    display:none; flex-direction:column;
+    max-height:0; overflow:hidden;
+    background:var(--ink); border-bottom:1px solid var(--line);
+    transition: max-height .3s ease;
+  }
+  .mobile-menu.open{ max-height:380px; }
+  .mobile-menu a{
+    padding:16px 24px; font-size:0.95rem; font-weight:600;
+    border-top:1px solid var(--line); color:var(--text);
+  }
+  .mobile-menu a:active{ background:var(--teal-dim); }
+
   .hero{
     position:relative; z-index:1;
     padding:120px 0 96px;
@@ -147,7 +169,6 @@
   }
   .btn-ghost:hover{border-color:var(--teal); background:var(--teal-dim);}
 
-  /* SECTION HEADERS */
   .section{padding:96px 0; position:relative; z-index:1;}
   .section-tag{
     font-family:'JetBrains Mono',monospace; font-size:0.78rem;
@@ -162,7 +183,6 @@
   }
   .section-intro{color:var(--muted); max-width:620px; margin-bottom:56px;}
 
-  /* SKILLS */
   .skill-grid{
     display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
     background:var(--line); border:1px solid var(--line); border-radius:10px;
@@ -179,7 +199,6 @@
   }
   .skill-card p{color:var(--muted); font-size:0.88rem; line-height:1.65;}
 
-  /* EXPERIENCE PIPELINE */
   .pipeline{position:relative; padding-left:32px;}
   .pipeline::before{
     content:''; position:absolute; left:5px; top:8px; bottom:8px; width:2px;
@@ -214,7 +233,6 @@
     font-family:'JetBrains Mono',monospace; color:var(--amber); font-weight:600;
   }
 
-  /* PROJECTS */
   .project-card{
     background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:32px; display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;
@@ -249,12 +267,37 @@
   }
   .project-link:hover{opacity:0.7;}
 
-  /* EDUCATION / CERTS */
   .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:48px;}
   .edu-item{margin-bottom:28px;}
   .edu-item h4{font-family:'Space Grotesk',sans-serif; font-size:1.02rem; margin-bottom:4px;}
   .edu-item .school{color:var(--teal); font-size:0.88rem;}
   .edu-item .when{color:var(--muted); font-size:0.82rem; font-family:'JetBrains Mono',monospace; margin-top:2px;}
+
+  /* BLOG */
+  .blog-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:24px;
+  }
+  .blog-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:30px; display:flex; flex-direction:column; gap:14px;
+    transition: border-color .2s, transform .2s;
+  }
+  .blog-card:hover{ border-color:var(--teal); transform:translateY(-3px); }
+  .blog-meta{
+    display:flex; gap:14px; align-items:center;
+    font-family:'JetBrains Mono',monospace; font-size:0.74rem; color:var(--muted);
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .blog-meta .tag{ color:var(--amber); }
+  .blog-card h3{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.1rem;
+    line-height:1.35;
+  }
+  .blog-card p{ color:var(--muted); font-size:0.9rem; line-height:1.65; }
+  .blog-readmore{
+    font-family:'JetBrains Mono',monospace; font-size:0.82rem; color:var(--teal);
+    margin-top:auto;
+  }
 
   .cert-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line);}
   .cert-list div{
@@ -264,7 +307,6 @@
   }
   .cert-list div::before{content:'✓'; color:var(--teal); font-family:'JetBrains Mono',monospace; font-size:0.8rem;}
 
-  /* CONTACT */
   .contact-section{
     background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
   }
@@ -280,8 +322,12 @@
 
   @media (max-width: 760px){
     .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .menu-toggle{display:flex;}
+    .mobile-menu{display:flex;}
     .wrap{padding:0 20px;}
     .skill-grid{grid-template-columns:1fr;}
+    .blog-grid{grid-template-columns:1fr;}
     .two-col{grid-template-columns:1fr; gap:0;}
     .stat-line{flex-direction:column;}
     .stat{border-right:none; border-bottom:1px solid var(--line);}
@@ -307,11 +353,22 @@
       <a href="#work">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
       <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
     </div>
     <a href="mailto:suvrojit2009@gmail.com" class="nav-cta mono">Get in touch</a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#work" onclick="closeMenu()">Experience</a>
+    <a href="#skills" onclick="closeMenu()">Skills</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#blog" onclick="closeMenu()">Blog</a>
+    <a href="#education" onclick="closeMenu()">Education</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
 </header>
 
 <main>
@@ -458,6 +515,44 @@
     </div>
   </section>
 
+  <section class="section wrap" id="blog">
+    <div class="section-tag">// Writing</div>
+    <h2>Notes from the field.</h2>
+    <p class="section-intro">Thoughts on generative and agentic AI, written from the seat of someone actually building automation inside CRM systems — not just reading about it.</p>
+
+    <div class="blog-grid">
+
+      <div class="blog-card">
+        <div class="blog-meta"><span>Jun 2026</span><span class="tag">Agentic AI</span></div>
+        <h3>What "agentic" actually means once you've shipped one</h3>
+        <p>Everyone's calling everything an agent right now, and honestly it's making the term less useful. After building an AI feature inside our Dynamics 365 setup that cut sales rep workload by 30%, here's the line I now use: if it can only answer when asked, it's a chatbot. If it can decide what to do next, check its own work, and only loop you in when something's genuinely ambiguous, that's agentic. Most "AI agents" I see in demos are the first thing wearing the second thing's name.</p>
+        <span class="blog-readmore mono">Read more →</span>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-meta"><span>May 2026</span><span class="tag">GenAI in CRM</span></div>
+        <h3>The boring part of GenAI is where the value actually is</h3>
+        <p>Nobody gets excited writing a prompt that summarizes a support ticket. But that's the part that saves five hours a week, not the flashy demo. The lesson I keep relearning in CRM work: the unglamorous, repetitive task your team complains about quietly in standups is almost always the best candidate for automation — not the impressive-looking edge case everyone wants to showcase.</p>
+        <span class="blog-readmore mono">Read more →</span>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-meta"><span>Apr 2026</span><span class="tag">Data Pipelines</span></div>
+        <h3>Why I trust automation more after building it badly once</h3>
+        <p>My first Azure Logic Apps pipeline broke quietly for two days before anyone noticed the sync had failed. That was a useful kind of embarrassing. Now every pipeline I design has a "tell me when you're wrong" step built in from day one — alerts, validation checks, a human checkpoint somewhere. The goal of automation isn't removing people from the loop; it's making sure the loop only needs them when it actually matters.</p>
+        <span class="blog-readmore mono">Read more →</span>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-meta"><span>Mar 2026</span><span class="tag">Career</span></div>
+        <h3>Going from BA to building AI features, without quitting the day job</h3>
+        <p>I didn't pivot into AI — I just kept asking "could this step be smarter?" on every Power Automate flow I touched. That question turned a basic CRM cleanup task into an AI-assisted feature within a few sprints. You don't need a separate career track to start working with GenAI; you need a backlog of annoying manual steps and permission to experiment on one of them.</p>
+        <span class="blog-readmore mono">Read more →</span>
+      </div>
+
+    </div>
+  </section>
+
   <section class="section wrap" id="education">
     <div class="section-tag">// Background</div>
     <h2>Education &amp; certifications.</h2>
@@ -503,6 +598,24 @@
 <footer>
   © 2026 Suvrojitmoy Ghosh · Dublin, Ireland
 </footer>
+
+<script>
+  function toggleMenu(){
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('mobileMenu');
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+  function closeMenu(){
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.querySelector('.menu-toggle').classList.remove('open');
+    document.querySelector('.menu-toggle').setAttribute('aria-expanded', 'false');
+  }
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 760) closeMenu();
+  });
+</script>
 
 </body>
 </html>
