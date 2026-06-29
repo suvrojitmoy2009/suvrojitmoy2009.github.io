@@ -233,6 +233,55 @@
     font-family:'JetBrains Mono',monospace; color:var(--amber); font-weight:600;
   }
 
+  /* CASE STUDY */
+  .case-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:36px; margin-bottom:8px;
+  }
+  .case-tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+    color:var(--teal); text-transform:uppercase; letter-spacing:0.06em;
+    border:1px solid rgba(61,217,197,0.35); border-radius:4px;
+    padding:3px 10px; display:inline-block; margin-bottom:16px;
+  }
+  .case-card h3{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1.4rem; margin-bottom:8px;
+  }
+  .case-sub{ color:var(--muted); font-size:0.92rem; margin-bottom:24px; }
+  .case-stats{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:8px;
+    overflow:hidden; margin-bottom:28px;
+  }
+  .case-stats div{ background:var(--card); padding:18px 16px; text-align:center; }
+  .case-stats .num{
+    font-family:'JetBrains Mono',monospace; font-size:1.5rem; font-weight:600; color:var(--amber); display:block;
+  }
+  .case-stats .lbl{ font-size:0.72rem; color:var(--muted); margin-top:4px; display:block; line-height:1.4; }
+  .case-block{ margin-bottom:24px; }
+  .case-block h4{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--teal);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;
+  }
+  .case-block p{ color:#C4CAD6; font-size:0.92rem; line-height:1.7; max-width:760px; }
+  .case-block ul{ list-style:none; display:flex; flex-direction:column; gap:10px; max-width:760px; }
+  .case-block li{
+    font-size:0.92rem; color:#C4CAD6; padding-left:20px; position:relative; line-height:1.65;
+  }
+  .case-block li::before{ content:'→'; position:absolute; left:0; color:var(--teal); font-weight:700; }
+  .case-block li .tool{ font-family:'JetBrains Mono',monospace; color:var(--teal); font-weight:600; }
+  .case-toggle{
+    background:none; border:1px solid var(--line); color:var(--text);
+    padding:10px 20px; border-radius:6px; font-size:0.85rem; font-family:'Inter',sans-serif;
+    cursor:pointer; transition: border-color .2s, background .2s;
+  }
+  .case-toggle:hover{ border-color:var(--teal); background:var(--teal-dim); }
+  .case-detail{ display:none; }
+  .case-detail.open{ display:block; }
+  @media (max-width:760px){
+    .case-stats{ grid-template-columns:repeat(2,1fr); }
+  }
+
   .project-card{
     background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:32px; display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;
@@ -351,6 +400,7 @@
     <div class="logo">Suvrojitmoy Ghosh<span class="dot">.</span></div>
     <div class="navlinks">
       <a href="#work">Experience</a>
+      <a href="#case-study">Case Study</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#blog">Blog</a>
@@ -363,6 +413,7 @@
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#work" onclick="closeMenu()">Experience</a>
+    <a href="#case-study" onclick="closeMenu()">Case Study</a>
     <a href="#skills" onclick="closeMenu()">Skills</a>
     <a href="#projects" onclick="closeMenu()">Projects</a>
     <a href="#blog" onclick="closeMenu()">Blog</a>
@@ -453,6 +504,56 @@
         </ul>
       </div>
 
+    </div>
+  </section>
+
+  <section class="section wrap" id="case-study">
+    <div class="section-tag">// Case Study</div>
+    <h2>One transformation, told in full.</h2>
+    <p class="section-intro">A closer look at how the pieces in my current role connect — not isolated tools, but one connected modernization effort.</p>
+
+    <div class="case-card">
+      <span class="case-tag">C&amp;C Gleeson · Oct 2022 – Present</span>
+      <h3>CRM Modernisation: From Manual Process to Automated System</h3>
+      <p class="case-sub">How a fragmented, Excel-driven supply chain and sales process became a unified, automated Dynamics 365 ecosystem.</p>
+
+      <div class="case-stats">
+        <div><span class="num mono">40%</span><span class="lbl">less manual effort for SMEs</span></div>
+        <div><span class="num mono">80%</span><span class="lbl">faster executive reporting</span></div>
+        <div><span class="num mono">100%</span><span class="lbl">automated daily data refresh</span></div>
+        <div><span class="num mono">5+ hrs</span><span class="lbl">saved per week on syncing</span></div>
+      </div>
+
+      <div class="case-block">
+        <h4>The Problem</h4>
+        <p>When I joined, supply chain and sales processes were spread across disconnected spreadsheets and manual handoffs. Reporting meant pulling Excel files together by hand, data syncing between systems was a manual daily chore, and there was no single source of truth that sales reps or leadership could trust in real time.</p>
+      </div>
+
+      <button class="case-toggle" onclick="toggleCase()" id="caseToggleBtn">Read full case study →</button>
+
+      <div class="case-detail" id="caseDetail">
+        <div class="case-block" style="margin-top:28px;">
+          <h4>The Approach</h4>
+          <ul>
+            <li>Led the end-to-end design of a <span class="tool">Dynamics 365</span> ecosystem to replace the fragmented legacy setup, acting as the bridge between business stakeholders and IT partners to gather and validate requirements.</li>
+            <li>Built automated workflows with <span class="tool">Power Automate</span> to remove repetitive manual steps subject matter experts were doing by hand.</li>
+            <li>Designed automated sync pipelines with <span class="tool">Azure Logic Apps</span> so operational data refreshed daily without anyone touching it.</li>
+            <li>Used <span class="tool">SQL and Python</span> to validate and clean the underlying data before it fed into reporting or automation — the unglamorous but essential layer underneath everything else.</li>
+            <li>Replaced manual Excel reporting with live <span class="tool">Power BI</span> dashboards connected directly to the CRM data, giving leadership real-time visibility instead of a static snapshot.</li>
+            <li>Shipped everything safely through <span class="tool">Azure DevOps</span> release pipelines, with proper UAT, defect tracking, and post-go-live support rather than a risky one-shot cutover.</li>
+          </ul>
+        </div>
+
+        <div class="case-block">
+          <h4>The Outcome</h4>
+          <p>The result wasn't four separate wins — it was one system where automation, clean data, and live reporting reinforced each other. Manual intervention dropped by 40%, executive reporting that used to take hours now takes minutes, and the daily data sync that used to eat 5+ hours of someone's week now runs itself, fully automated, every day.</p>
+        </div>
+
+        <div class="case-block">
+          <h4>What I'd Do Differently</h4>
+          <p>Looking back, I'd have introduced the validation and alerting layer for the Logic Apps pipeline earlier — a smaller version of it caught a sync failure quietly for two days before anyone noticed. Now every pipeline I design has a "tell me when you're wrong" step built in from the start, not bolted on afterward.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -615,6 +716,13 @@
   window.addEventListener('resize', () => {
     if (window.innerWidth > 760) closeMenu();
   });
+
+  function toggleCase(){
+    const detail = document.getElementById('caseDetail');
+    const btn = document.getElementById('caseToggleBtn');
+    const isOpen = detail.classList.toggle('open');
+    btn.textContent = isOpen ? 'Show less ↑' : 'Read full case study →';
+  }
 </script>
 
 </body>
